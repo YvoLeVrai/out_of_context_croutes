@@ -18,7 +18,7 @@ let streamers = ['Antoine', 'Daniel', 'Kiddy'];
 let sequenceByCharacter = 2;
 
 let on_heroku = false
-if (process.env.var === "PROD")
+if (process.env.ENV === "PROD")
     on_heroku = true
 
 function sleep(ms) {
