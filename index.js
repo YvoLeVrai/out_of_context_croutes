@@ -51,10 +51,10 @@ async function downloadVideo() {
 
     //verify that there is no downloads ongoing
 
-    console.log('killing');
+    /*console.log('killing');
     promises.forEach(promise => function () {
         promise.kill('SIGTERM');
-    })
+    })*/
     promises = [];
 
     let clipsLength = 5;
