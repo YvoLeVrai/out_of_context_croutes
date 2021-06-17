@@ -402,11 +402,11 @@ vods.Kiddy = [
         id: 0,
         url: 'https://www.youtube.com/watch?v=e5V21XLPJzE',
         length: '042949',
-        launchTime: '2021-04-24T15:46:9Z',
+        launchTime: '2021-04-24T15:46:09Z',
         withCroute: [
             {
-                begining: '012124',
-                end: '012401'
+                begining: '011924',
+                end: '013001'
             }
         ]
     },
@@ -414,7 +414,7 @@ vods.Kiddy = [
         id: 1,
         url: 'https://www.youtube.com/watch?v=JxseOVCYOSs',
         length: '044239',
-        launchTime: '2021-04-25T16:36:45Z',
+        launchTime: '2021-04-25T16:36:45.8Z',
         withCroute: [
             {
                 begining: '041930',
@@ -454,7 +454,7 @@ vods.Kiddy = [
         id: 4,
         url: 'https://www.youtube.com/watch?v=xLKHBHdmDcs',
         length: '083469',
-        launchTime: '2021-05-01T16:54:62.4Z',
+        launchTime: '2021-05-01T16:55:02.4Z',
         withCroute: [
             {
                 begining: '062331',
@@ -500,9 +500,9 @@ vods.Kiddy = [
     },
     {
         id: 6,
-        url: 'https://www.youtube.com/watch?v=xLKHBHdmDcs',
+        url: 'https://www.youtube.com/watch?v=52357tbyrVo',
         length: '085109',
-        launchTime: '2021-05-04T13:08:26Z',
+        launchTime: '2021-05-04T13:08:29Z',
         withCroute: [
             {
                 begining: '045415',
@@ -523,3 +523,46 @@ vods.Kiddy = [
         ]
     }
 ];
+
+vods.Vanessa = [
+    {
+        id: 0,
+        url: 'https://www.youtube.com/watch?v=Dx5qNLJEUsk',
+        length: '031121',
+        launchTime: '2021-04-28T22:10:55Z', //7:53 à ajouter
+        withCroute: [
+            {
+                begining: '013619',
+                end: '030916'
+            }
+        ]
+    },
+    {
+        id: 1,
+        url: 'https://www.youtube.com/watch?v=7aNm4OC-Dv8',
+        length: '012341',
+        launchTime: '2021-05-01T19:22:44Z',
+        withCroute: [
+            {
+                begining: '010417',
+                end: '011059'
+            }
+        ]
+    },
+    {
+        id: 2,
+        url: 'https://www.youtube.com/watch?v=zTWq5uaiKps',
+        length: '023339',
+        launchTime: '2021-05-04T16:20:14.4Z',
+        withCroute: [
+            {
+                begining: '005355',
+                end: '005755'
+            },
+            {
+                begining: '015054',
+                end: '020609'
+            }
+        ]
+    }
+]

@@ -14,8 +14,10 @@ ffmpeg.setFfprobePath(ffprobePath);
 const T = new twit(config.twitter);
 
 let vodsSelected = [];
-let streamers = ['Antoine', 'Daniel', 'Kiddy'];
+let streamers = ['Antoine', 'Daniel', 'Kiddy', 'Vanessa'];
 let sequenceByCharacter = 2;
+
+let promises = [];
 
 let on_heroku = false
 if (process.env.ENV === "PROD")
@@ -47,19 +49,28 @@ async function downloadVideo() {
     /*ytdl(videoJson.link, options)
         .then (output => console.log(output));*/
 
+    //verify that there is no downloads ongoing
+
+    console.log('killing');
+    promises.forEach(promise => function () {
+        promise.kill('SIGTERM');
+    })
+    promises = [];
+
     let clipsLength = 5;
     vodsSelected = [];
 
     let streamerToPickFrom = vodsLists["Daniel"];
 
     let vodId = Math.floor(Math.random() * streamerToPickFrom.length); // get a random vod from the selected streamer
-    //vodId = 19; //Test value for synchronizing
+    //vodId = 2; //Test value for synchronizing
 
     //Get a random Daniel vod
     let vodToPickFrom = streamerToPickFrom[vodId];
 
     let randomSegment = vodToPickFrom.withCroute[Math.floor(Math.random() * vodToPickFrom.withCroute.length)];
     let minTime = (new Date(vodToPickFrom.launchTime)).getTime() / 1000 + convert_time(randomSegment.begining);
+    console.log("Min Time : " + minTime);
     console.log("Min Time : " + new Date(minTime * 1000).toISOString());
     let maxTime = (new Date(vodToPickFrom.launchTime)).getTime() / 1000 + convert_time(randomSegment.end);
     console.log("Max Time : " + new Date(maxTime * 1000).toISOString());
@@ -86,7 +97,6 @@ async function downloadVideo() {
 
     if (vodsSelected.length >= 2) {
 
-        let promises = [];
         let i = 0;
         for (let j = 0; j < sequenceByCharacter; j++) {
             for (let k = 0; k < vodsSelected.length; k++) {
@@ -94,7 +104,7 @@ async function downloadVideo() {
                 let vodClipTime = (pickedTime.getTime() - new Date(vodsSelected[k].launchTime).getTime()) / 1000;
 
                 if (on_heroku)
-                    await downloadClip(vodsSelected[k].url, vodClipTime, clipsLength, i); // Do this for weak server (heroku free plan)
+                    await promises.push(downloadClip(vodsSelected[k].url, vodClipTime, clipsLength, i)); // Do this for weak server (heroku free plan)
                 else
                     promises.push(downloadClip(vodsSelected[k].url, vodClipTime, clipsLength, i)); // Should do this for faster results
                 i++;
@@ -122,7 +132,7 @@ function downloadClip(url, time, length, id) {
     return new Promise((resolve, reject) => {
         console.log(id + " Downloading");
 
-        let options = {f: '22', getUrl: true, forceIpv4: true};
+        let options = {f: '22', getUrl: true, forceIpv4: true}; // 22 = 720p, 18 = 360p
 
         ytdl(url, options)
             .then(output => {
