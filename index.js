@@ -104,7 +104,7 @@ async function downloadVideo() {
                 let vodClipTime = (pickedTime.getTime() - new Date(vodsSelected[k].launchTime).getTime()) / 1000;
 
                 if (on_heroku)
-                    await promises.push(downloadClip(vodsSelected[k].url, vodClipTime, clipsLength, i)); // Do this for weak server (heroku free plan)
+                    await downloadClip(vodsSelected[k].url, vodClipTime, clipsLength, i); // Do this for weak server (heroku free plan)
                 else
                     promises.push(downloadClip(vodsSelected[k].url, vodClipTime, clipsLength, i)); // Should do this for faster results
                 i++;
