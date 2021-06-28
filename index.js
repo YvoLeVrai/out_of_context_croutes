@@ -60,7 +60,7 @@ async function downloadVideo() {
     let clipsLength = 5;
     vodsSelected = [];
 
-    let streamerToPickFrom = vodsLists["Kiddy"];
+    let streamerToPickFrom = vodsLists["Daniel"];
 
     let vodId = Math.floor(Math.random() * streamerToPickFrom.length); // get a random vod from the selected streamer
     //vodId = 2; //Test value for synchronizing
