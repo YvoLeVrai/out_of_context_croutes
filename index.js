@@ -14,7 +14,7 @@ ffmpeg.setFfprobePath(ffprobePath);
 const T = new twit(config.twitter);
 
 let vodsSelected = [];
-let streamers = ['Antoine', 'Daniel', 'Kiddy', 'Vanessa'];
+let streamers = ['Antoine', 'Daniel', 'Kiddy', 'Vanessa', "Donatien"];
 let sequenceByCharacter = 2;
 
 let promises = [];
@@ -63,7 +63,7 @@ async function downloadVideo() {
     let streamerToPickFrom = vodsLists["Antoine"];
 
     let vodId = Math.floor(Math.random() * streamerToPickFrom.length); // get a random vod from the selected streamer
-    //vodId = 2; //Test value for synchronizing
+    //vodId = 5; //Test value for synchronizing
 
     //Get a random Daniel vod
     let vodToPickFrom = streamerToPickFrom[vodId];
@@ -93,7 +93,7 @@ async function downloadVideo() {
         });
     });
 
-    console.log(vodsSelected);
+    //console.log(vodsSelected);
 
     if (vodsSelected.length >= 2) {
 
@@ -102,6 +102,7 @@ async function downloadVideo() {
             for (let k = 0; k < vodsSelected.length; k++) {
 
                 let vodClipTime = (pickedTime.getTime() - new Date(vodsSelected[k].launchTime).getTime()) / 1000;
+                console.log(vodsSelected[k].url + "&t=" + Math.floor(vodClipTime));
 
                 if (on_heroku)
                     await downloadClip(vodsSelected[k].url, vodClipTime, clipsLength, i); // Do this for weak server (heroku free plan)
